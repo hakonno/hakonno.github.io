@@ -1,1 +1,1 @@
-# hakonno.github.io
+MIDI scale finder: https://midi.hakono.me
