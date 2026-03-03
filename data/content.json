@@ -2,8 +2,8 @@
   "profile": {
     "name": "Håkon",
     "title": "Computer Science Student @ UiO",
-    "about": "Computer science student at the University of Oslo with a passion for building useful web applications and exploring the intersection of technology and geography/music.",
-    "socials": [
+    "about": "Computer science student at the University of Oslo with a passion for building useful applications.",
+    "socials": [  
       { "label": "GitHub", "url": "https://github.com/hakonno" }
     ]
   },
@@ -39,7 +39,7 @@
         "url": "https://geo-tuber-monorepo-webapp.vercel.app/images/westengland.webm",
         "caption": "Current progress: Synchronized 3D map following the video's narrative."
       },
-      "intro": "Toobmap started as a personal need to understand the geography of the travel vlogs I watch. As the project evolved, I realized that 'context' means different things depending on how you're watching.",
+      "intro": "Toobmap started as a personal need to understand the geography of the travel vlogs I watch. As the project evolved, I realized that it had the potential to be a useful tool for geographic exploration and learning.",
       "content": [
         {
           "type": "text",
