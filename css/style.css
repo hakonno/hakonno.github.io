@@ -1,0 +1,124 @@
+:root {
+    --bg: #ffffff;
+    --text: #1a1a1a;
+    --accent: #0070f3;
+    --muted: #666666;
+    --border: #eeeeee;
+    --max-width: 720px;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+    line-height: 1.65;
+    color: var(--text);
+    background: var(--bg);
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Navigation - Minimal */
+nav {
+    padding: 1.5rem 2rem;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--text);
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-left: 1.2rem;
+    transition: color 0.15s;
+}
+
+.nav-links a:hover { color: var(--accent); }
+
+/* Layout */
+#app {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 2rem;
+    min-height: 80vh;
+}
+
+h1 { font-size: 2.25rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+.subtitle { font-size: 1.1rem; color: var(--accent); font-weight: 600; margin-top: 0; }
+.about-text { font-size: 1.15rem; color: var(--muted); max-width: 600px; margin-bottom: 4rem; }
+
+.section-title { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 2rem; }
+
+/* Project Cards - Clean */
+.project-card {
+    margin-bottom: 3.5rem;
+}
+
+.project-card h3 { font-size: 1.5rem; margin-bottom: 0.25rem; }
+.tagline { color: var(--muted); font-style: italic; margin-bottom: 1rem; font-size: 0.95rem; }
+.description { font-size: 1.05rem; margin-bottom: 1rem; }
+.project-actions .project-link {
+    display: inline-block;
+    margin-right: 1.5rem;
+    text-decoration: none;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.project-actions .project-link:hover { text-decoration: underline; }
+
+/* Blog Elements */
+.blog-item { margin-bottom: 2.5rem; }
+.blog-item a { text-decoration: none; color: inherit; display: block; }
+.blog-item h3 { margin-bottom: 0.25rem; font-size: 1.4rem; }
+.blog-item .date { font-size: 0.8rem; color: var(--muted); }
+.blog-item p { margin-top: 0.5rem; color: var(--muted); }
+
+/* Full Post Styling */
+.breadcrumb a { text-decoration: none; color: var(--accent); font-size: 0.9rem; font-weight: 600; }
+.post-header { margin-top: 2rem; margin-bottom: 2rem; }
+.post-intro { font-size: 1.3rem; line-height: 1.5; font-weight: 500; margin-bottom: 2.5rem; }
+
+.post-media { margin: 3rem -2rem; background: #000; }
+.post-media video { width: 100%; display: block; }
+.post-media figcaption { padding: 1rem 2rem; background: var(--bg); font-size: 0.85rem; color: var(--muted); border-bottom: 1px solid var(--border); }
+
+.comp-container { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 3rem 0; }
+.comp-box { padding: 1.5rem; border: 1px solid var(--border); border-radius: 8px; }
+.comp-box h4 { margin-top: 0; margin-bottom: 0.5rem; color: var(--accent); }
+.comp-box ul { padding-left: 1.1rem; font-size: 0.9rem; color: var(--muted); }
+.comp-box li { margin-bottom: 0.4rem; }
+.minimal-link { font-size: 0.85rem; font-weight: 700; color: var(--text); text-decoration: none; margin-top: 1rem; display: inline-block; }
+
+.post-h2 { font-size: 1.6rem; margin-top: 3rem; margin-bottom: 1rem; }
+.post-p { font-size: 1.1rem; margin-bottom: 1.5rem; color: #333; }
+
+footer {
+    max-width: var(--max-width);
+    margin: 5rem auto 0;
+    padding: 3rem 2rem;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+/* WCAG - Focus styles */
+a:focus, video:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+}
+
+@media (max-width: 600px) {
+    .comp-container { grid-template-columns: 1fr; gap: 1rem; }
+    .post-media { margin: 2rem -1rem; }
+    h1 { font-size: 1.8rem; }
+}

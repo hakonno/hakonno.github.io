@@ -1,0 +1,83 @@
+{
+  "profile": {
+    "name": "Håkon",
+    "title": "Computer Science Student @ UiO",
+    "about": "Computer science student at the University of Oslo with a passion for building useful web applications and exploring the intersection of technology and geography/music.",
+    "socials": [
+      { "label": "GitHub", "url": "https://github.com/hakonno" }
+    ]
+  },
+  "projects": [
+    {
+      "id": "toobmap",
+      "title": "Toobmap (WIP)",
+      "tagline": "Mapping the journey of travel videos.",
+      "description": "An exploration into synchronizing geographical data with video playback. Developing both a browser extension for quick context and a standalone web app for deep exploration.",
+      "links": [
+        { "label": "Development Blog", "url": "#blog/toobmap" }
+      ],
+      "tags": ["Web App", "YouTube API", "3D Maps", "Travel"]
+    },
+    {
+      "id": "midi-finder",
+      "title": "MIDI Key Finder",
+      "tagline": "Algorithmic key detection from MIDI.",
+      "description": "A tool for identifying musical scales and keys from MIDI files or live input, using note emphasis as a heuristic for detection.",
+      "links": [
+        { "label": "Visit Site", "url": "https://midi.hakonno.me" },
+        { "label": "GitHub", "url": "https://github.com/hakonno/midi-scale-finder" }
+      ],
+      "tags": ["Music Theory", "MIDI", "Web Tool", "Audio"]
+    }
+  ],
+  "blogPosts": [
+    {
+      "id": "toobmap",
+      "title": "Building a map for YouTube videos",
+      "date": "March 2024",
+      "video": {
+        "url": "https://geo-tuber-monorepo-webapp.vercel.app/images/westengland.webm",
+        "caption": "Current progress: Synchronized 3D map following the video's narrative."
+      },
+      "intro": "Toobmap started as a personal need to understand the geography of the travel vlogs I watch. As the project evolved, I realized that 'context' means different things depending on how you're watching.",
+      "content": [
+        {
+          "type": "text",
+          "body": "I often watch travel videos from places I didn't even know existed. Suddenly, I find myself switching back and forth between YouTube and Google Maps, trying to keep up. I love understanding where we are in the world, but creators often skip the geography. So I thought: Why not show the map directly on YouTube?"
+        },
+        {
+          "type": "heading",
+          "text": "Two Approaches to Context"
+        },
+        {
+          "type": "text",
+          "body": "While developing the project, I've been oscillating between two different implementations. The first is a Chrome Extension, designed for quick, in-the-moment context. It lives as a lightweight overlay directly inside the YouTube interface, perfect for a quick lookup when you wonder 'where exactly is this dune in Namibia?' without leaving the flow of the video."
+        },
+        {
+          "type": "text",
+          "body": "The second is a standalone Web App. This is where I can experiment more with the 3D aspect of the map. By having more screen real estate, I can provide a full-size rotatable map that synchronizes with the video playback, making it more suited for long-form exploration and geographic learning."
+        },
+        {
+          "type": "heading",
+          "text": "The Technical Journey"
+        },
+        {
+          "type": "text",
+          "body": "Automatically identifying places in video text sounded simple at first. I started with NLP (Natural Language Processing) to find potential place names and matched them against a local geographical database. But context is critical—algorithmically distinguishing between 'New York' the city and 'New York' in a random description is hard."
+        },
+        {
+          "type": "heading",
+          "text": "AI to the Rescue"
+        },
+        {
+          "type": "text",
+          "body": "The breakthrough came with AI. Now, the data is sent to a lightweight language model (Gemma) that understands linguistic context. It catches nuances I could never write manual rules for. The map updates with the model's response within seconds."
+        },
+        {
+          "type": "text",
+          "body": "The extension is currently built with TypeScript, Svelte 5, and Leaflet. As I continue to develop both versions, the goal is to make them work seamlessly together, providing geography as a first-class citizen in the video-watching experience."
+        }
+      ]
+    }
+  ]
+}
