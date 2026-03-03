@@ -3,7 +3,7 @@
     "name": "Håkon",
     "title": "Computer Science Student @ UiO",
     "about": "Computer science student at the University of Oslo with a passion for building useful applications.",
-    "socials": [  
+    "socials": [
       { "label": "GitHub", "url": "https://github.com/hakonno" }
     ]
   },
@@ -14,7 +14,7 @@
       "tagline": "Mapping the journey of travel videos.",
       "description": "An exploration into synchronizing geographical data with video playback. Developing both a browser extension for quick context and a standalone web app for deep exploration.",
       "links": [
-        { "label": "Development Blog", "url": "#blog/toobmap" }
+        { "label": "Read Development Blog", "url": "#blog/toobmap" }
       ],
       "tags": ["Web App", "YouTube API", "3D Maps", "Travel"]
     },
@@ -33,49 +33,96 @@
   "blogPosts": [
     {
       "id": "toobmap",
-      "title": "Building a map for YouTube videos",
-      "date": "March 2024",
+      "title": "Building a Map for YouTube Videos",
+      "date": "September 21, 2025 · WIP",
       "video": {
         "url": "https://geo-tuber-monorepo-webapp.vercel.app/images/westengland.webm",
         "caption": "Current progress: Synchronized 3D map following the video's narrative."
       },
-      "intro": "Toobmap started as a personal need to understand the geography of the travel vlogs I watch. As the project evolved, I realized that it had the potential to be a useful tool for geographic exploration and learning.",
+      "intro": "Toobmap started as a small frustration. I watch a lot of travel content: dunes in Namibia where the desert meets the Atlantic, documentaries about forgotten valleys in Appalachia. And almost every time I catch myself doing the same thing—pausing the video, opening a new tab, pulling up Google Maps, trying to figure out where we actually are.",
       "content": [
         {
           "type": "text",
-          "body": "I often watch travel videos from places I didn't even know existed. Suddenly, I find myself switching back and forth between YouTube and Google Maps, trying to keep up. I love understanding where we are in the world, but creators often skip the geography. So I thought: Why not show the map directly on YouTube?"
+          "body": "So I thought—why not just show the map directly on YouTube?"
+        },
+        {
+          "type": "divider"
         },
         {
           "type": "heading",
-          "text": "Two Approaches to Context"
+          "text": "The Core Idea"
         },
         {
           "type": "text",
-          "body": "While developing the project, I've been oscillating between two different implementations. The first is a Chrome Extension, designed for quick, in-the-moment context. It lives as a lightweight overlay directly inside the YouTube interface, perfect for a quick lookup when you wonder 'where exactly is this dune in Namibia?' without leaving the flow of the video."
+          "body": "Toobmap puts an interactive map beside YouTube videos so you can follow the journey in real time. It comes in two forms: a browser extension that lives inside YouTube, and a standalone web app for a more immersive experience."
         },
         {
           "type": "text",
-          "body": "The second is a standalone Web App. This is where I can experiment more with the 3D aspect of the map. By having more screen real estate, I can provide a full-size rotatable map that synchronizes with the video playback, making it more suited for long-form exploration and geographic learning."
+          "body": "Both analyze public video metadata and captions to pull out locations and plot them on a map. The extension is built with Svelte 5 and injects into YouTube's sidebar. The web app is a Next.js application. They share a monorepo: same types, same location-parsing logic, same geocoding pipeline."
+        },
+        {
+          "type": "divider"
         },
         {
           "type": "heading",
-          "text": "The Technical Journey"
+          "text": "Why It Was Harder Than Expected"
         },
         {
           "type": "text",
-          "body": "Automatically identifying places in video text sounded simple at first. I started with NLP (Natural Language Processing) to find potential place names and matched them against a local geographical database. But context is critical—algorithmically distinguishing between 'New York' the city and 'New York' in a random description is hard."
+          "body": "At first, identifying places from a video seemed straightforward. Pull text from the title and description, find place names, plot them. Turns out, not even close."
+        },
+        {
+          "type": "text",
+          "body": "<strong>The noise problem.</strong> Video descriptions are full of irrelevant text. A creator might write \"check out my other series: Exploring Mumbai, India\" in the description of a video shot entirely in Norway. For a human that's obvious. For an algorithm, it's a nightmare."
+        },
+        {
+          "type": "text",
+          "body": "<strong>The ambiguity problem.</strong> \"Georgia\"—the country or the US state? \"York\"—standalone, or a truncated mention? I built a rule-based system: emoji flag hints, regional hierarchy scoring, geographic co-occurrence. If a video mentions Norway, Vestland, and Bergen together, it's probably Bergen in Norway. It worked—until it didn't. Every new edge case needed another heuristic. The whole thing got brittle fast. But I feel there is potential; a more sophisticated algorithm with a large database could learn to contextualize regions better."
+        },
+        {
+          "type": "text",
+          "body": "<strong>The Extension's SPA problem.</strong> YouTube doesn't do full page reloads when you navigate between videos. Early versions of the extension had race conditions, duplicate widgets, broken state. The fix was building a manager that detects page changes properly and waits for the DOM to settle before doing anything. Even then it's not perfect—YouTube can change its structure at any time."
+        },
+        {
+          "type": "divider"
         },
         {
           "type": "heading",
-          "text": "AI to the Rescue"
+          "text": "Where AI Actually Helped"
         },
         {
           "type": "text",
-          "body": "The breakthrough came with AI. Now, the data is sent to a lightweight language model (Gemma) that understands linguistic context. It catches nuances I could never write manual rules for. The map updates with the model's response within seconds."
+          "body": "The breakthrough was bringing in a language model. The pipeline has a fast path and a slow path running in parallel. If YouTube has GPS coordinates or a location tag in the video metadata, those get rendered immediately. Meanwhile the AI call goes out in the background and refines the result."
         },
         {
           "type": "text",
-          "body": "The extension is currently built with TypeScript, Svelte 5, and Leaflet. As I continue to develop both versions, the goal is to make them work seamlessly together, providing geography as a first-class citizen in the video-watching experience."
+          "body": "The AI gets the video title, description, tags, recording details from the public metadata of the video. It returns an ordered list of locations with a parent chain (like Norway, Vestland, Bergen), a narrative order, and confidence-weighted coordinates. It is explicitly instructed to ignore promotional text and focus on what the video is actually about, which it does very well, a key distinction from other location detection systems."
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "heading",
+          "text": "Real-Time Narrative Sync"
+        },
+        {
+          "type": "text",
+          "body": "When captions are available, Toobmap detects when a location is mentioned and highlights it on the map as the video plays. This has a few layers. Best case: the AI already knows roughly when each location appears. Next best: scan the caption transcript for location name mentions and group them into time windows. If neither works, fall back to YouTube's chapter markers. Last resort: slice the video duration equally across all detected locations."
+        },
+        {
+          "type": "text",
+          "body": "Transcript availability is inconsistent though. A lot of videos have no captions at all, and if nothing's there, the sync feature just doesn't work."
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "heading",
+          "text": "Where It's At"
+        },
+        {
+          "type": "text",
+          "body": "Still lots of work to be done prior to release of beta. Edge cases exist, optimizations are pending. But it works—genuinely changing how travel videos feel to watch. AI quality is good on well-described videos and unreliable on sparse ones, which is about what you'd expect. If you care about geographic context while watching travel videos, I hope this is something you'd get value out of using."
         }
       ]
     }
