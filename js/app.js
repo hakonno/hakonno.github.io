@@ -41,13 +41,13 @@ function renderSocials(socials) {
 function renderHome(data) {
     const app = document.getElementById('app');
     app.innerHTML = `
-        <header>
+        <header class="home-header">
             <h1>${data.profile.name}</h1>
             <p class="subtitle">${data.profile.title}</p>
             <p class="about-text">${data.profile.about}</p>
         </header>
         <section id="projects">
-            <h2 class="section-title">Work</h2>
+            <h2 class="section-title">Projects</h2>
             <div id="projects-list"></div>
         </section>
     `;
@@ -70,7 +70,7 @@ function renderHome(data) {
 
 function renderBlogList(posts) {
     const app = document.getElementById('app');
-    app.innerHTML = '<h2 class="section-title">Journal</h2><div id="blog-list"></div>';
+    app.innerHTML = '<h2 class="section-title">Blog</h2><div id="blog-list"></div>';
     const list = document.getElementById('blog-list');
     posts.forEach(post => {
         const div = document.createElement('div');
@@ -107,12 +107,13 @@ function renderPost(post) {
 
     const contentHtml = post.content.map(item => {
         if (item.type === 'heading') return `<h2 class="post-h2">${item.text}</h2>`;
+        if (item.type === 'divider') return `<hr class="post-hr">`;
         return `<p class="post-p">${item.body}</p>`;
     }).join('');
 
     const app = document.getElementById('app');
     app.innerHTML = `
-        <nav class="breadcrumb"><a href="#blog">← Journal</a></nav>
+        <nav class="breadcrumb"><a href="#blog">← Blog</a></nav>
         <article class="full-post">
             <header class="post-header">
                 <h1>${post.title}</h1>
