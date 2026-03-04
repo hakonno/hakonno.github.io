@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+    <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}">
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="{{ '/' | relative_url }}" class="nav-logo">{{ site.data.content.profile.name }}</a>
+            <div class="nav-links">
+                <a href="{{ '/' | relative_url }}">Projects</a>
+                <a href="{{ '/blog/' | relative_url }}">Blog</a>
+                {% for social in site.data.content.profile.socials %}
+                    <a href="{{ social.url }}" target="_blank" rel="noopener noreferrer">{{ social.label }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </nav>
+
+    <div id="app">
+        {{ content }}
+    </div>
+
+    <footer>
+        <p>&copy; <span>{{ 'now' | date: '%Y' }}</span> {{ site.data.content.profile.name }}</p>
+    </footer>
+</body>
+</html>
