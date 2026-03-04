@@ -61,6 +61,12 @@
           "body": "Both analyze public video metadata and captions to pull out locations and plot them on a map. The extension is built with Svelte 5 and injects into YouTube's sidebar. The web app is a Next.js application. They share a monorepo: same types, same location-parsing logic, same geocoding pipeline."
         },
         {
+          "type": "image",
+          "url": "data/toobmap_extension_169format.jpg",
+          "alt": "Toobmap browser extension showing an interactive map beside a YouTube video",
+          "caption": "The Toobmap extension integrated into YouTube's interface."
+        },
+        {
           "type": "divider"
         },
         {
@@ -78,10 +84,6 @@
         {
           "type": "text",
           "body": "<strong>The ambiguity problem.</strong> \"Georgia\"—the country or the US state? \"York\"—standalone, or a truncated mention? I built a rule-based system: emoji flag hints, regional hierarchy scoring, geographic co-occurrence. If a video mentions Norway, Vestland, and Bergen together, it's probably Bergen in Norway. It worked—until it didn't. Every new edge case needed another heuristic. The whole thing got brittle fast. But I feel there is potential; a more sophisticated algorithm with a large database could learn to contextualize regions better."
-        },
-        {
-          "type": "text",
-          "body": "<strong>The Extension's SPA problem.</strong> YouTube doesn't do full page reloads when you navigate between videos. Early versions of the extension had race conditions, duplicate widgets, broken state. The fix was building a manager that detects page changes properly and waits for the DOM to settle before doing anything. Even then it's not perfect—YouTube can change its structure at any time."
         },
         {
           "type": "divider"
