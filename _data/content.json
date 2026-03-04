@@ -23,7 +23,7 @@
       "tagline": "Algorithmic key detection from MIDI.",
       "description": "A tool for identifying musical scales and keys from MIDI files or live input, using note emphasis as a heuristic for detection.",
       "links": [
-        { "label": "Visit Site", "url": "https://midi.hakonno.me" },
+        { "label": "Visit Site", "url": "https://midi.hakono.me" },
         { "label": "GitHub", "url": "https://github.com/hakonno/midi-scale-finder" }
       ]
     }
