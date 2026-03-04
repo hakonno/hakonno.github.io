@@ -1,4 +1,7 @@
+---
+---
+
 User-agent: *
 Allow: /
 
-Sitemap: https://hakono.me/sitemap.xml
+Sitemap: {{ site.url }}/sitemap.xml
