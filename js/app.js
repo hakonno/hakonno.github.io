@@ -108,6 +108,14 @@ function renderPost(post) {
     const contentHtml = post.content.map(item => {
         if (item.type === 'heading') return `<h2 class="post-h2">${item.text}</h2>`;
         if (item.type === 'divider') return `<hr class="post-hr">`;
+        if (item.type === 'image') {
+            return `
+                <figure class="post-media">
+                    <img src="${item.url}" alt="${item.alt || ''}" loading="lazy">
+                    ${item.caption ? `<figcaption>${item.caption}</figcaption>` : ''}
+                </figure>
+            `;
+        }
         return `<p class="post-p">${item.body}</p>`;
     }).join('');
 
