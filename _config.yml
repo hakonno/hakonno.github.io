@@ -1,5 +1,13 @@
 title: Håkon
+description: Personal portfolio and blog by Håkon, featuring projects in web development, mapping, and music tools.
+url: "https://hakono.me"
+lang: en
+author: Håkon
 markdown: kramdown
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
 
 # Keep URLs simple on GitHub Pages
 permalink: pretty
