@@ -5,6 +5,7 @@ permalink: /blog/toobmap/
 date: 2025-09-21
 date_display: "September 21, 2025 · WIP"
 intro: "Toobmap started as a small frustration. I watch a lot of travel content: dunes in Namibia where the desert meets the Atlantic, documentaries about forgotten valleys in Appalachia. And almost every time I catch myself doing the same thing—pausing the video, opening a new tab, pulling up Google Maps, trying to figure out where we actually are."
+description: "How I built Toobmap, a project that syncs travel videos with interactive maps using metadata, captions, and AI-assisted location extraction."
 video_url: "https://geo-tuber-monorepo-webapp.vercel.app/images/westengland.webm"
 video_caption: "Current progress: Synchronized 3D map following the video's narrative."
 ---
@@ -20,7 +21,7 @@ Toobmap puts an interactive map beside YouTube videos so you can follow the jour
 Both analyze public video metadata and captions to pull out locations and plot them on a map. The extension is built with Svelte 5 and injects into YouTube's sidebar. The web app is a Next.js application. They share a monorepo: same types, same location-parsing logic, same geocoding pipeline.
 
 <figure class="post-media">
-  <img src="{{ '/data/toobmap_extension_169format.jpg' | relative_url }}" alt="Toobmap browser extension showing an interactive map beside a YouTube video" loading="lazy">
+  <img src="{{ '/assets/images/toobmap_extension_169format.jpg' | relative_url }}" alt="Toobmap browser extension showing an interactive map beside a YouTube video" loading="lazy">
   <figcaption>The Toobmap extension integrated into YouTube's interface.</figcaption>
 </figure>
 
