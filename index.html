@@ -1,29 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Håkon - Portfolio</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <nav class="main-nav">
-        <div class="nav-container">
-            <a href="#home" class="nav-logo">Håkon</a>
-            <div class="nav-links">
-                <!-- Links gets added by JS -->
+---
+layout: default
+title: Portfolio
+---
+
+<header class="home-header">
+    <h1>{{ site.data.content.profile.name }}</h1>
+    <p class="subtitle">{{ site.data.content.profile.title }}</p>
+    <p class="about-text">{{ site.data.content.profile.about }}</p>
+</header>
+
+<section id="projects">
+    <h2 class="section-title">Projects</h2>
+    <div id="projects-list">
+        {% for project in site.data.content.projects %}
+            <div class="project-card">
+                <h3>{{ project.title }}</h3>
+                <p class="tagline">{{ project.tagline }}</p>
+                <p class="description">{{ project.description }}</p>
+                <div class="project-actions">
+                    {% for link in project.links %}
+                        {% assign href = link.url %}
+                        {% if href contains '://' %}
+                            <a href="{{ href }}" class="project-link" target="_blank" rel="noopener noreferrer">{{ link.label }}</a>
+                        {% else %}
+                            <a href="{{ href | relative_url }}" class="project-link">{{ link.label }}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
             </div>
-        </div>
-    </nav>
-
-    <div id="app">
-        <!-- Innholdet lastes dynamisk her -->
+        {% endfor %}
     </div>
-
-    <footer>
-        <p>&copy; <span id="year"></span> Håkon</p>
-    </footer>
-
-    <script src="js/app.js"></script>
-</body>
-</html>
+</section>

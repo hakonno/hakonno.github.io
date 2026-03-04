@@ -1,6 +1,8 @@
 ### Welcome!
 
-Key/scale finder for MIDI files: [midi.hakono.me](https://midi.hakono.me/)
+This is my portfolio site, built with Jekyll and hosted on GitHub Pages.
+- Live at https://hakonno.me
 
-
-github profile: [https://github.com/hakonno](https://github.com/hakonno)
+Other links:
+- MIDI key/scale finder: https://midi.hakonno.me/
+- GitHub: https://github.com/hakonno
