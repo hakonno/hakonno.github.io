@@ -33,8 +33,9 @@ At first, identifying places from a video seemed straightforward. Pull text from
 **The noise problem.** Video descriptions are full of irrelevant text. A creator might write "check out my other series: Exploring Mumbai, India" in the description of a video shot entirely in Norway. For a human that's obvious. For an algorithm, it's a nightmare.
 
 **The ambiguity problem.** "Georgia"—the country or the US state? "York"—standalone, or a truncated mention? I built a rule-based system: emoji flag hints, regional hierarchy scoring, geographic co-occurrence. If a video mentions Norway, Vestland, and Bergen together, it's probably Bergen in Norway. It worked—until it didn't. Every new edge case needed another heuristic. The whole thing got brittle fast. But I feel there is potential; a more sophisticated algorithm with a large database could learn to contextualize regions better.
-
-**The Extension's SPA problem.** YouTube doesn't do full page reloads when you navigate between videos. Early versions of the extension had race conditions, duplicate widgets, broken state. The fix was building a manager that detects page changes properly and waits for the DOM to settle before doing anything. Even then it's not perfect—YouTube can change its structure at any time.
+<!-- not too relevant.
+**The Extension's SPA problem.** YouTube doesn't do full page reloads when you navigate between videos. Early versions of the extension had race conditions, duplicate widgets, broken state. The fix was building a manager that detects page changes properly and waits for the DOM to settle before doing anything. Even then it's not perfect—YouTube can change its structure at any time. 
+-->
 
 ---
 
